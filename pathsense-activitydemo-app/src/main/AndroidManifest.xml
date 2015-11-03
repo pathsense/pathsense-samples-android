@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    package="com.pathsense.activitydemo.app"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.pathsense.android.sdk.CLIENT_ID"
+            android:value="YOUR_PATHSENSE_SDK_CLIENT_ID" />
+        <meta-data
+            android:name="com.pathsense.android.sdk.API_KEY"
+            android:value="YOUR_PATHSENSE_SDK_API_KEY" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver android:name=".PathsenseActivityChangeBroadcastReceiver" />
+        <receiver android:name=".PathsenseActivityUpdateBroadcastReceiver" />
+        <receiver android:name=".PathsenseDeviceHoldingBroadcastReceiver" />
+    </application>
+</manifest>

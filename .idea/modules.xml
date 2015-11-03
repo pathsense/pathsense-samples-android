@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/pathsense-activitydemo-app/pathsense-activitydemo-app.iml" filepath="$PROJECT_DIR$/pathsense-activitydemo-app/pathsense-activitydemo-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pathsense-geofencedemo-app/pathsense-geofencedemo-app.iml" filepath="$PROJECT_DIR$/pathsense-geofencedemo-app/pathsense-geofencedemo-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pathsense-samples-android.iml" filepath="$PROJECT_DIR$/.idea/pathsense-samples-android.iml" />
+    </modules>
+  </component>
+</project>
