@@ -20,7 +20,7 @@ Setup for Pathsense Activity Demo
 
 3. Save AndroidManifest.xml.
 
-4. Place **pathsense-android-sdk-bundle-release-1.0.0.0.aar** under **/libs**
+4. Place **pathsense-android-sdk-bundle-release-1.1.0.0.aar** under **/libs**
 
 5. In **build.gradle**, add the following:
 
@@ -37,7 +37,7 @@ Setup for Pathsense Activity Demo
     * to the **dependencies** element:
 
     ```groovy
-    compile(name:'pathsense-android-sdk-bundle-release-1.0.0.0', ext:'aar')
+    compile(name:'pathsense-android-sdk-bundle-release-1.1.0.0', ext:'aar')
     ```
 
 6. Save build.gradle.
@@ -48,7 +48,7 @@ Requesting Activity Updates
 -------------
 1. Create a [Broadcast Receiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html) that will receive activity updates.
 
-    * For convenience, you can extend [PathsenseActivityRecognitionReceiver](http://docs.pathsense.io/android/sdk/location/1.0.0.0/com/pathsense/android/sdk/location/PathsenseActivityRecognitionReceiver.html)
+    * For convenience, you can extend [PathsenseActivityRecognitionReceiver](http://docs.pathsense.io/android/sdk/location/1.1.0.0/com/pathsense/android/sdk/location/PathsenseActivityRecognitionReceiver.html)
 
     ```java
     public class PathsenseActivityUpdateBroadcastReceiver extends BroadcastReceiver
@@ -72,16 +72,16 @@ Requesting Activity Updates
       android:name=".PathsenseActivityUpdateBroadcastReceiver" />
     ```
 
-3. In **MainActivity** (or any other [context](http://developer.android.com/reference/android/content/Context.html) object), instantiate the [PathsenseLocationProviderApi](http://docs.pathsense.io/android/sdk/location/1.0.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html):
+3. In **MainActivity** (or any other [context](http://developer.android.com/reference/android/content/Context.html) object), instantiate the [PathsenseLocationProviderApi](http://docs.pathsense.io/android/sdk/location/1.1.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html):
 
     ```java
     PathsenseLocationProviderApi api = PathsenseLocationProviderApi.getInstance(context);
     ```
 
-4. Request activity updates by calling [requestActivityUpdates](http://docs.pathsense.io/android/sdk/location/1.0.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#requestActivityUpdates-java.lang.Class-) with the receiver created in step #1:
+4. Request activity updates by calling [requestActivityUpdates](http://docs.pathsense.io/android/sdk/location/1.1.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#requestActivityUpdates-java.lang.Class-) with the receiver created in step #1:
 
     ```java
     api.requestActivityUpdates(PathsenseActivityUpdateBroadcastReceiver.class);
     ```
 
-    * until [removeActivityUpdates](http://docs.pathsense.io/android/sdk/location/1.0.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#removeActivityUpdates--) is called, the receiver will be notified whenever an activity update occurs.
+    * until [removeActivityUpdates](http://docs.pathsense.io/android/sdk/location/1.1.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#removeActivityUpdates--) is called, the receiver will be notified whenever an activity update occurs.

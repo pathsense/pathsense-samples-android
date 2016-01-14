@@ -1,7 +1,7 @@
 Pathsense Samples for Android
 =============================
 
-A collection of sample applications demonstrating how to use the Pathsense SDK. For more information, take a look at the [Javadocs](http://docs.pathsense.io/android/sdk/location/1.0.0.0/) or connect with us on our [website](https://pathsense.com/).
+A collection of sample applications demonstrating how to use the Pathsense SDK. For more information, take a look at the [Javadocs](http://docs.pathsense.io/android/sdk/location/1.1.0.0/) or connect with us on our [website](https://pathsense.com/).
 
 Setup for Pathsense Android SDK
 ===================================
@@ -25,7 +25,7 @@ Setup for Pathsense Android SDK
 
 3. Save AndroidManifest.xml.
 
-4. Place **pathsense-android-sdk-bundle-release-1.0.0.0.aar** under **/libs**
+4. Place **pathsense-android-sdk-bundle-release-1.1.0.0.aar** under **/libs**
 
 5. In **build.gradle**, add the following:
 
@@ -42,7 +42,7 @@ Setup for Pathsense Android SDK
     * to the **dependencies** element:
 
     ```groovy
-    compile(name:'pathsense-android-sdk-bundle-release-1.0.0.0', ext:'aar')
+    compile(name:'pathsense-android-sdk-bundle-release-1.1.0.0', ext:'aar')
     ```
 
 6. Save build.gradle.
