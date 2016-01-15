@@ -3,6 +3,12 @@ Pathsense Samples for Android
 
 A collection of sample applications demonstrating how to use the Pathsense SDK. For more information, take a look at the [Javadocs](http://docs.pathsense.io/android/sdk/location/1.1.0.0/) or connect with us on our [website](https://pathsense.com/).
 
+You can see the additional information for each sample in their respective README files.
+
+  - [Activity API Demo](pathsense-activitydemo-app/README.md)
+  - [GeoFence API Demo](pathsense-geofencedemo-app/README.md)
+  - [Visit API Demo](pathsense-visitdemo-app/README.md)
+
 Setup for Pathsense Android SDK
 ===================================
 1. Obtain a **Pathsense SDK Client ID** and **API Key** from [here](https://pathsense.com/). Click “GET STARTED” and enter your email address.
