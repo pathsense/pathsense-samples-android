@@ -7,7 +7,6 @@ You can see the additional information for each sample in their respective READM
 
   - [Activity API Demo](pathsense-activitydemo-app/README.md)
   - [GeoFence API Demo](pathsense-geofencedemo-app/README.md)
-  - [Visit API Demo](pathsense-visitdemo-app/README.md)
 
 Setup for Pathsense Android SDK
 ===================================
