@@ -1,4 +1,4 @@
-Setup for Pathsense Geofence Demo
+Setup for Pathsense In-Vehicle Location Demo
 ===================================
 1. Obtain a **Google Maps Android API Key** from [here](https://developers.google.com/maps/documentation/android/signup).
 
@@ -52,31 +52,22 @@ Setup for Pathsense Geofence Demo
 
 8. Re-build application.
 
-Adding a Geofence
+Requesting In-Vehicle Location Updates
 -------------
-1. Create a [Broadcast Receiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html) that will receive geofence events (i.e. ingress, egress).
+1. Create a [Broadcast Receiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html) that will receive in-vehicle location updates.
 
-    * For convenience, you can extend [PathsenseGeofenceEventReceiver](http://docs.pathsense.io/android/sdk/location/2.1.0.0/com/pathsense/android/sdk/location/PathsenseGeofenceEventReceiver.html)
+    * For convenience, you can extend [PathsenseInVehicleLocationUpdateReceiver](http://docs.pathsense.io/android/sdk/location/2.1.0.0/com/pathsense/android/sdk/location/PathsenseInVehicleLocationUpdateReceiver.html)
 
     ```java
-    public class PathsenseGeofenceDemoGeofenceEventReceiver extends BroadcastReceiver
+    public class PathsenseInVehicleLocationDemoInVehicleLocationUpdateReceiver extends BroadcastReceiver
     {
       @Override
       public void onReceive(Context context, Intent intent)
       {  
-        PathsenseGeofenceEvent geofenceEvent = PathsenseGeofenceEvent.fromIntent(intent);
-        if (geofenceEvent != null)
+        PathsenseInVehicleLocation inVehicleLocation = PathsenseInVehicleLocation.fromIntent(intent);
+        if (inVehicleLocation != null)
         {
-          if (geofenceEvent.isIngress())
-          {
-            // ingress
-            // do something
-          }
-          else if (geofenceEvent.isEgress())
-          {
-            // egress
-            // do something
-          }
+          // do something
         }
       }
     }
@@ -86,7 +77,7 @@ Adding a Geofence
 
     ```xml
     <receiver  
-      android:name=".PathsenseGeofenceDemoGeofenceEventReceiver" />
+      android:name=".PathsenseInVehicleLocationDemoInVehicleLocationUpdateReceiver" />
     ```
 
 3. In **MapActivity** (or any other [context](http://developer.android.com/reference/android/content/Context.html) object), instantiate the [PathsenseLocationProviderApi](http://docs.pathsense.io/android/sdk/location/2.1.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html):
@@ -95,10 +86,10 @@ Adding a Geofence
     PathsenseLocationProviderApi api = PathsenseLocationProviderApi.getInstance(context);
     ```
 
-4. Add a geofence to be monitored by calling [addGeofence](http://docs.pathsense.io/android/sdk/location/2.1.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#addGeofence-java.lang.String-double-double-int-java.lang.Class-) with an ID, latitude, longitude, radius, and the receiver created in step #1:
+4. Request in-vehicle location updates by calling [requestInVehicleLocationUpdates](http://docs.pathsense.io/android/sdk/location/2.1.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#requestInVehicleLocationUpdates-java.lang.Class-) with the receiver created in step #1:
 
     ```java
-    api.addGeofence("MYGEOFENCE", location.getLatitude(), location.getLongitude(), 100, PathsenseGeofenceDemoGeofenceEventReceiver.class);
+    api.requestInVehicleLocationUpdates(PathsenseInVehicleLocationDemoInVehicleLocationUpdateReceiver.class);
     ```
 
-    * until [removeGeofence](http://docs.pathsense.io/android/sdk/location/2.1.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#removeGeofence-java.lang.String-) is called, the receiver will be notified whenever a geofence event (i.e. ingress, egress) occurs.
+    * until [removeInVehicleLocationUpdates](http://docs.pathsense.io/android/sdk/location/2.1.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#removeInVehicleLocationUpdates--) is called, the receiver will be sent in-vehicle location updates.

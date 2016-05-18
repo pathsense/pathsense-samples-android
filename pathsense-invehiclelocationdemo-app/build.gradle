@@ -11,7 +11,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.pathsense.activitydemo.app"
+        applicationId "com.pathsense.invehiclelocationdemo.app"
         minSdkVersion 9
         targetSdkVersion 22
         versionCode 1
@@ -28,4 +28,5 @@ android {
 dependencies {
     compile(name:'pathsense-android-sdk-bundle-release-2.1.0.0', ext:'aar')
     compile 'com.android.support:appcompat-v7:22.1.1'
+    compile "com.google.android.gms:play-services-maps:7.5.0"
 }
