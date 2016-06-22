@@ -255,7 +255,6 @@ public class MapActivity extends FragmentActivity implements LocationListener, O
 					inVehiclePointMarkers.add(inVehiclePointMarker);
 				}
 			}
-			inVehicleLocations.add(0, inVehicleLocation);
 			numInVehicleLocations = inVehicleLocations.size();
 			//
 			if (numInVehicleLocations > 1)

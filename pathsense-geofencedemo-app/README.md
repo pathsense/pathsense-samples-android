@@ -28,7 +28,7 @@ Setup for Pathsense Geofence Demo
 
 4. Save AndroidManifest.xml.
 
-5. Place **pathsense-android-sdk-bundle-release-2.1.0.0.aar** under **/libs**
+5. Place **pathsense-android-sdk-bundle-release-2.1.2.2.aar** under **/libs**
 
 6. In **build.gradle**, add the following:
 
@@ -45,7 +45,7 @@ Setup for Pathsense Geofence Demo
     * to the **dependencies** element:
 
     ```groovy
-    compile(name:'pathsense-android-sdk-bundle-release-2.1.0.0', ext:'aar')
+    compile(name:'pathsense-android-sdk-bundle-release-2.1.2.2', ext:'aar')
     ```
 
 7. Save build.gradle.
@@ -56,7 +56,7 @@ Adding a Geofence
 -------------
 1. Create a [Broadcast Receiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html) that will receive geofence events (i.e. ingress, egress).
 
-    * For convenience, you can extend [PathsenseGeofenceEventReceiver](http://docs.pathsense.io/android/sdk/location/2.1.0.0/com/pathsense/android/sdk/location/PathsenseGeofenceEventReceiver.html)
+    * For convenience, you can extend [PathsenseGeofenceEventReceiver](http://docs.pathsense.io/android/sdk/location/2.1.2.2/com/pathsense/android/sdk/location/PathsenseGeofenceEventReceiver.html)
 
     ```java
     public class PathsenseGeofenceDemoGeofenceEventReceiver extends BroadcastReceiver
@@ -89,16 +89,16 @@ Adding a Geofence
       android:name=".PathsenseGeofenceDemoGeofenceEventReceiver" />
     ```
 
-3. In **MapActivity** (or any other [context](http://developer.android.com/reference/android/content/Context.html) object), instantiate the [PathsenseLocationProviderApi](http://docs.pathsense.io/android/sdk/location/2.1.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html):
+3. In **MapActivity** (or any other [context](http://developer.android.com/reference/android/content/Context.html) object), instantiate the [PathsenseLocationProviderApi](http://docs.pathsense.io/android/sdk/location/2.1.2.2/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html):
 
     ```java
     PathsenseLocationProviderApi api = PathsenseLocationProviderApi.getInstance(context);
     ```
 
-4. Add a geofence to be monitored by calling [addGeofence](http://docs.pathsense.io/android/sdk/location/2.1.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#addGeofence-java.lang.String-double-double-int-java.lang.Class-) with an ID, latitude, longitude, radius, and the receiver created in step #1:
+4. Add a geofence to be monitored by calling [addGeofence](http://docs.pathsense.io/android/sdk/location/2.1.2.2/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#addGeofence-java.lang.String-double-double-int-java.lang.Class-) with an ID, latitude, longitude, radius, and the receiver created in step #1:
 
     ```java
     api.addGeofence("MYGEOFENCE", location.getLatitude(), location.getLongitude(), 100, PathsenseGeofenceDemoGeofenceEventReceiver.class);
     ```
 
-    * until [removeGeofence](http://docs.pathsense.io/android/sdk/location/2.1.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#removeGeofence-java.lang.String-) is called, the receiver will be notified whenever a geofence event (i.e. ingress, egress) occurs.
+    * until [removeGeofence](http://docs.pathsense.io/android/sdk/location/2.1.2.2/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#removeGeofence-java.lang.String-) is called, the receiver will be notified whenever a geofence event (i.e. ingress, egress) occurs.
