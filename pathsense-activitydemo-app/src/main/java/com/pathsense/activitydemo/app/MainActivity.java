@@ -17,10 +17,12 @@ import android.widget.TextView;
 
 import com.pathsense.android.sdk.location.PathsenseDetectedActivities;
 import com.pathsense.android.sdk.location.PathsenseDetectedActivity;
-import com.pathsense.android.sdk.location.PathsenseDeviceHolding;
 import com.pathsense.android.sdk.location.PathsenseLocationProviderApi;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 public class MainActivity extends Activity
 {
 	static class InternalActivityChangeReceiver extends BroadcastReceiver
@@ -71,30 +73,6 @@ public class MainActivity extends Activity
 			}
 		}
 	}
-	static class InternalDeviceHoldingReceiver extends BroadcastReceiver
-	{
-		MainActivity mActivity;
-		//
-		InternalDeviceHoldingReceiver(MainActivity activity)
-		{
-			mActivity = activity;
-		}
-		@Override
-		public void onReceive(Context context, Intent intent)
-		{
-			final MainActivity activity = mActivity;
-			final InternalHandler handler = activity != null ? activity.mHandler : null;
-			//
-			if (activity != null && handler != null)
-			{
-				PathsenseDeviceHolding deviceHolding = (PathsenseDeviceHolding) intent.getSerializableExtra("deviceHolding");
-				Message msg = Message.obtain();
-				msg.what = MESSAGE_ON_DEVICE_HOLDING;
-				msg.obj = deviceHolding;
-				handler.sendMessage(msg);
-			}
-		}
-	}
 	static class InternalHandler extends Handler
 	{
 		MainActivity mActivity;
@@ -108,11 +86,10 @@ public class MainActivity extends Activity
 		{
 			final MainActivity activity = mActivity;
 			final TextView textDetectedActivity0 = activity != null ? activity.mTextDetectedActivity0 : null;
+			final TextView textStationary = activity != null ? activity.mTextStationary : null;
 			final TextView textDetectedActivity1 = activity != null ? activity.mTextDetectedActivity1 : null;
-			final TextView textDeviceHolding = activity != null ? activity.mTextDeviceHolding : null;
-			final PathsenseLocationProviderApi api = activity != null ? activity.mApi : null;
 			//
-			if (activity != null && textDetectedActivity0 != null && textDetectedActivity1 != null && textDeviceHolding != null && api != null)
+			if (activity != null && textDetectedActivity0 != null && textStationary != null && textDetectedActivity1 != null)
 			{
 				switch (msg.what)
 				{
@@ -123,10 +100,6 @@ public class MainActivity extends Activity
 						if (mostProbableActivity != null)
 						{
 							StringBuilder detectedActivityString = new StringBuilder(mostProbableActivity.getDetectedActivity().name());
-//							if (mostProbableActivity.isStationary())
-//							{
-//								detectedActivityString.append(" STATIONARY");
-//							}
 							textDetectedActivity1.setText(detectedActivityString.toString());
 						} else
 						{
@@ -144,6 +117,9 @@ public class MainActivity extends Activity
 							int numDetectedActivityList = detectedActivityList != null ? detectedActivityList.size() : 0;
 							if (numDetectedActivityList > 0)
 							{
+								DecimalFormat decimalF = (DecimalFormat) NumberFormat.getNumberInstance(new Locale("en", "US"));
+								decimalF.applyPattern("0.00000");
+								//
 								StringBuilder detectedActivityString = new StringBuilder();
 								for (int i = 0; i < numDetectedActivityList; i++)
 								{
@@ -152,25 +128,14 @@ public class MainActivity extends Activity
 									{
 										detectedActivityString.append("<br />");
 									}
-									detectedActivityString.append(detectedActivity.getDetectedActivity().name() + " " + detectedActivity.getConfidence());
+									detectedActivityString.append(detectedActivity.getDetectedActivity().name() + " " + decimalF.format(detectedActivity.getConfidence()));
 								}
+								textStationary.setText(detectedActivities.isStationary() ? "STATIONARY" : "NOT STATIONARY");
 								textDetectedActivity0.setText(Html.fromHtml(detectedActivityString.toString()));
 							}
 						} else
 						{
 							textDetectedActivity0.setText("");
-						}
-						break;
-					}
-					case MESSAGE_ON_DEVICE_HOLDING:
-					{
-						PathsenseDeviceHolding deviceHolding = (PathsenseDeviceHolding) msg.obj;
-						if (deviceHolding != null)
-						{
-							textDeviceHolding.setText(deviceHolding.isHolding() ? "Holding" : "Not Holding");
-						} else
-						{
-							textDeviceHolding.setText("");
 						}
 						break;
 					}
@@ -183,16 +148,13 @@ public class MainActivity extends Activity
 	// Messages
 	static final int MESSAGE_ON_ACTIVITY_CHANGE = 1;
 	static final int MESSAGE_ON_ACTIVITY_UPDATE = 2;
-	static final int MESSAGE_ON_DEVICE_HOLDING = 3;
 	//
 	InternalActivityChangeReceiver mActivityChangeReceiver;
 	InternalActivityUpdateReceiver mActivityUpdateReceiver;
-	InternalDeviceHoldingReceiver mDeviceHoldingReceiver;
 	InternalHandler mHandler;
-	PathsenseLocationProviderApi mApi;
 	TextView mTextDetectedActivity0;
 	TextView mTextDetectedActivity1;
-	TextView mTextDeviceHolding;
+	TextView mTextStationary;
 	//
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -201,8 +163,8 @@ public class MainActivity extends Activity
 		setContentView(R.layout.activity_main);
 		//
 		mTextDetectedActivity0 = (TextView) findViewById(R.id.textDetectedActivity0);
+		mTextStationary = (TextView) findViewById(R.id.textStationary);
 		mTextDetectedActivity1 = (TextView) findViewById(R.id.textDetectedActivity1);
-		mTextDeviceHolding = (TextView) findViewById(R.id.textDeviceHolding);
 		mHandler = new InternalHandler(this);
 		// receivers
 		LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
@@ -210,37 +172,21 @@ public class MainActivity extends Activity
 		localBroadcastManager.registerReceiver(mActivityChangeReceiver, new IntentFilter("activityChange"));
 		mActivityUpdateReceiver = new InternalActivityUpdateReceiver(this);
 		localBroadcastManager.registerReceiver(mActivityUpdateReceiver, new IntentFilter("activityUpdate"));
-		mDeviceHoldingReceiver = new InternalDeviceHoldingReceiver(this);
-		localBroadcastManager.registerReceiver(mDeviceHoldingReceiver, new IntentFilter("deviceHolding"));
-		// location api
-		mApi = PathsenseLocationProviderApi.getInstance(this);
 	}
 	@Override
 	protected void onPause()
 	{
 		super.onPause();
 		//
-		final PathsenseLocationProviderApi api = mApi;
-		//
-		if (api != null)
-		{
-			api.removeActivityChanges();
-			api.removeActivityUpdates();
-			api.removeDeviceHolding();
-		}
+		PathsenseLocationProviderApi.getInstance(this).removeActivityChanges();
+		PathsenseLocationProviderApi.getInstance(this).removeActivityUpdates();
 	}
 	@Override
 	protected void onResume()
 	{
 		super.onResume();
 		//
-		final PathsenseLocationProviderApi api = mApi;
-		//
-		if (api != null)
-		{
-			api.requestActivityChanges(PathsenseActivityChangeBroadcastReceiver.class);
-			api.requestActivityUpdates(PathsenseActivityUpdateBroadcastReceiver.class);
-			api.requestDeviceHolding(PathsenseDeviceHoldingBroadcastReceiver.class);
-		}
+		PathsenseLocationProviderApi.getInstance(this).requestActivityChanges(PathsenseActivityChangeBroadcastReceiver.class);
+		PathsenseLocationProviderApi.getInstance(this).requestActivityUpdates(PathsenseActivityUpdateBroadcastReceiver.class);
 	}
 }

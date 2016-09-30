@@ -24,6 +24,5 @@
         </activity>
         <receiver android:name=".PathsenseActivityChangeBroadcastReceiver" />
         <receiver android:name=".PathsenseActivityUpdateBroadcastReceiver" />
-        <receiver android:name=".PathsenseDeviceHoldingBroadcastReceiver" />
     </application>
 </manifest>

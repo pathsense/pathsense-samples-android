@@ -26,6 +26,6 @@ android {
 }
 
 dependencies {
-    compile(name:'pathsense-android-sdk-bundle-release-2.2.1.0', ext:'aar')
+    compile(name:'pathsense-android-sdk-bundle-release-2.3.0.0', ext:'aar')
     compile 'com.android.support:appcompat-v7:22.1.1'
 }
