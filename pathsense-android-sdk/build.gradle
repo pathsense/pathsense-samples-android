@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('pathsense-android-sdk-bundle-release-2.3.0.0.aar'))
