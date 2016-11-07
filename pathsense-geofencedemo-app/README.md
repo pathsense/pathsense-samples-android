@@ -28,29 +28,17 @@ Setup for Pathsense Geofence Demo
 
 4. Save AndroidManifest.xml.
 
-5. Place **pathsense-android-sdk-bundle-release-2.3.0.0.aar** under **/libs**
-
-6. In **build.gradle**, add the following:
-
-    * to the **repositories** element:
-
-    ```groovy
-    repositories {
-      flatDir {
-        dirs 'libs'
-      }
-    }
-    ```
+5. In **build.gradle**, add the following:
     
     * to the **dependencies** element:
 
     ```groovy
-    compile(name:'pathsense-android-sdk-bundle-release-2.3.0.0', ext:'aar')
+    compile project(':pathsense-android-sdk')
     ```
 
-7. Save build.gradle.
+6. Save build.gradle.
 
-8. Re-build application.
+7. Re-build application.
 
 Adding a Geofence
 -------------

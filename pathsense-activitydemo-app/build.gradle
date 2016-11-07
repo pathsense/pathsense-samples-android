@@ -1,11 +1,5 @@
 apply plugin: 'com.android.application'
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
-
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
@@ -26,6 +20,6 @@ android {
 }
 
 dependencies {
-    compile(name:'pathsense-android-sdk-bundle-release-2.3.0.0', ext:'aar')
+    compile project(':pathsense-android-sdk')
     compile 'com.android.support:appcompat-v7:22.1.1'
 }

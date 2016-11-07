@@ -31,26 +31,28 @@ Setup for Pathsense Android SDK
 
 3. Save AndroidManifest.xml.
 
-4. Place **pathsense-android-sdk-bundle-release-2.3.0.0.aar** under **/libs**
+4. Add new module **pathsense-android-sdk**
 
-5. In **build.gradle**, add the following:
+    * create folder **pathsense-android-sdk** to root
+    
+    * add ```':pathsense-android-sdk'``` module to **settings.gradle**
 
-    * to the **repositories** element:
 
+5. Place **pathsense-android-sdk-bundle-release-2.3.0.0.aar** in module **pathsense-android-sdk**
+
+6. In module **pathsense-android-sdk** create file **build.gradle**
     ```groovy
-    repositories {
-      flatDir {
-        dirs 'libs'
-      }
-    }
+    configurations.maybeCreate("default")
+    artifacts.add("default", file('pathsense-android-sdk-bundle-release-2.3.0.0.aar'))
     ```
+
+
+7. Add dependency to your module
 
     * to the **dependencies** element:
 
     ```groovy
-    compile(name:'pathsense-android-sdk-bundle-release-2.3.0.0', ext:'aar')
+    compile project(':pathsense-android-sdk')
     ```
 
-6. Save build.gradle.
-
-7. Re-build application.
+8. Re-build application.
