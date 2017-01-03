@@ -54,3 +54,12 @@ Setup for Pathsense Android SDK
 6. Save build.gradle.
 
 7. Re-build application.
+
+How to customize notification (Android 7.1+)
+===================================
+The PathSense SDK runs as a foreground service. By default, it will show the PathSense icon and read "Pathsense is running". You can customize this notification, by adding pathsense.properties to the /assets folder of your app and setting the following properties:
+icon_name: resource name of icon (i.e. drawable/icon)
+
+ - ticker_text
+ - content_title
+ - content_text
