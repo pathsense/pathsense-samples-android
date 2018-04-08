@@ -8,7 +8,6 @@ repositories {
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "com.pathsense.activitydemo.app"
@@ -26,6 +25,6 @@ android {
 }
 
 dependencies {
-    compile(name:'pathsense-android-sdk-bundle-release-2.3.0.18', ext:'aar')
+    compile(name:'pathsense-android-sdk-location-bundle-release-3.1.0.6', ext:'aar')
     compile 'com.android.support:appcompat-v7:22.1.1'
 }
