@@ -1,7 +1,7 @@
 Pathsense Samples for Android
 =============================
 
-A collection of sample applications demonstrating how to use the Pathsense SDK. For more information, take a look at the [Javadocs](http://docs.pathsense.io/android/sdk/location/3.1.0.6/) or connect with us on our [website](https://pathsense.com/) or [developer portal](https://developer.pathsense.com/).
+A collection of sample applications demonstrating how to use the Pathsense SDK. For more information, take a look at the [Javadocs](http://docs.pathsense.io/android/sdk/location/4.0.0.0/) or connect with us on our [website](https://pathsense.com/) or [developer portal](https://developer.pathsense.com/).
 
 You can see the additional information for each sample in their respective README files.
 
@@ -31,7 +31,7 @@ Setup for Pathsense Android SDK
 
 3. Save AndroidManifest.xml.
 
-4. Place **pathsense-android-sdk-location-bundle-release-3.1.0.6.aar** under **/libs**
+4. Place **pathsense-android-sdk-location-bundle-release-4.0.0.0.aar** under **/libs**
 
 5. In **build.gradle**, add the following:
 
@@ -48,7 +48,11 @@ Setup for Pathsense Android SDK
     * to the **dependencies** element:
 
     ```groovy
-    compile(name:'pathsense-android-sdk-location-bundle-release-3.1.0.6', ext:'aar')
+    compile(name:'pathsense-android-sdk-location-bundle-release-4.0.0.0', ext:'aar')
+    ```
+    * for improved performance on Android Oreo and above add Google Play Services Location 15.0.1 or higher ***not required**
+    ```groovy
+    compile "com.google.android.gms:play-services-location:15.0.1"
     ```
 
 6. Save build.gradle.

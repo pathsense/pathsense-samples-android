@@ -3,8 +3,7 @@
 /local.properties
 
 # Android Studio
-/.idea/workspace.xml
-/.idea/libraries
+/.idea
 
 # OSX
 .DS_Store

@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.pathsense.activitydemo.app"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -25,6 +25,7 @@ android {
 }
 
 dependencies {
-    compile(name:'pathsense-android-sdk-location-bundle-release-3.1.0.6', ext:'aar')
+    compile(name:'pathsense-android-sdk-location-bundle-release-4.0.0.0', ext:'aar')
     compile 'com.android.support:appcompat-v7:22.1.1'
+    compile "com.google.android.gms:play-services-location:15.0.1"
 }
