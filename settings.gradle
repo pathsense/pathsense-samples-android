@@ -1,1 +1,1 @@
-include ':pathsense-geofencedemo-app'
+include ':pathsense-activitydemo-app', ':pathsense-geofencedemo-app'
