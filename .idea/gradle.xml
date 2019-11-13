@@ -8,7 +8,16 @@
         </compositeConfiguration>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/pathsense-activitydemo-app" />
+            <option value="$PROJECT_DIR$/pathsense-geofencedemo-app" />
+            <option value="$PROJECT_DIR$/pathsense-invehiclelocationdemo-app" />
+          </set>
+        </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

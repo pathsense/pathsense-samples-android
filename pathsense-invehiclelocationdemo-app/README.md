@@ -28,7 +28,7 @@ Setup for Pathsense In-Vehicle Location Demo
 
 4. Save AndroidManifest.xml.
 
-5. Place **pathsense-android-sdk-location-bundle-release-4.0.0.0.aar** under **/libs**
+5. Place **pathsense-android-sdk-location-bundle-release-4.0.0.2.aar** under **/libs**
 
 6. In **build.gradle**, add the following:
 
@@ -45,7 +45,7 @@ Setup for Pathsense In-Vehicle Location Demo
     * to the **dependencies** element:
 
     ```groovy
-    compile(name:'pathsense-android-sdk-location-bundle-release-4.0.0.0', ext:'aar')
+    compile(name:'pathsense-android-sdk-location-bundle-release-4.0.0.2', ext:'aar')
     ```
     * for improved performance on Android Oreo and above add Google Play Services Location 15.0.1 or higher ***not required**
     ```groovy
@@ -60,7 +60,7 @@ Requesting In-Vehicle Location Updates
 -------------
 1. Create a [Broadcast Receiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html) that will receive in-vehicle location updates.
 
-    * For convenience, you can extend [PathsenseInVehicleLocationUpdateReceiver](http://docs.pathsense.io/android/sdk/location/4.0.0.0/com/pathsense/android/sdk/location/PathsenseInVehicleLocationUpdateReceiver.html)
+    * For convenience, you can extend [PathsenseInVehicleLocationUpdateReceiver](http://docs.pathsense.io/android/sdk/location/4.0.0.2/com/pathsense/android/sdk/location/PathsenseInVehicleLocationUpdateReceiver.html)
 
     ```java
     public class PathsenseInVehicleLocationDemoInVehicleLocationUpdateReceiver extends BroadcastReceiver
@@ -84,16 +84,16 @@ Requesting In-Vehicle Location Updates
       android:name=".PathsenseInVehicleLocationDemoInVehicleLocationUpdateReceiver" />
     ```
 
-3. In **MapActivity** (or any other [context](http://developer.android.com/reference/android/content/Context.html) object), instantiate the [PathsenseLocationProviderApi](http://docs.pathsense.io/android/sdk/location/4.0.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html):
+3. In **MapActivity** (or any other [context](http://developer.android.com/reference/android/content/Context.html) object), instantiate the [PathsenseLocationProviderApi](http://docs.pathsense.io/android/sdk/location/4.0.0.2/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html):
 
     ```java
     PathsenseLocationProviderApi api = PathsenseLocationProviderApi.getInstance(context);
     ```
 
-4. Request in-vehicle location updates by calling [requestInVehicleLocationUpdates](http://docs.pathsense.io/android/sdk/location/4.0.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#requestInVehicleLocationUpdates-java.lang.Class-) with the receiver created in step #1:
+4. Request in-vehicle location updates by calling [requestInVehicleLocationUpdates](http://docs.pathsense.io/android/sdk/location/4.0.0.2/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#requestInVehicleLocationUpdates-java.lang.Class-) with the receiver created in step #1:
 
     ```java
     api.requestInVehicleLocationUpdates(PathsenseInVehicleLocationDemoInVehicleLocationUpdateReceiver.class);
     ```
 
-    * until [removeInVehicleLocationUpdates](http://docs.pathsense.io/android/sdk/location/4.0.0.0/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#removeInVehicleLocationUpdates--) is called, the receiver will be sent in-vehicle location updates.
+    * until [removeInVehicleLocationUpdates](http://docs.pathsense.io/android/sdk/location/4.0.0.2/com/pathsense/android/sdk/location/PathsenseLocationProviderApi.html#removeInVehicleLocationUpdates--) is called, the receiver will be sent in-vehicle location updates.
