@@ -5,6 +5,7 @@ package com.pathsense.invehiclelocationdemo.app;
 
 import android.Manifest;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -150,6 +151,12 @@ public class MapActivity extends FragmentActivity implements LocationListener, O
     // Messages
     static final int MESSAGE_ON_IN_VEHICLE_LOCATION_UPDATE = 0;
     static final int MESSAGE_ON_GROUND_TRUTH_LOCATION = 1;
+
+    //
+    public static Intent createIntent(Context context) {
+        return Intent.makeRestartActivityTask(new ComponentName(context, MapActivity.class));
+    }
+
     //
     double mHeadingGroundTruth;
     double mHeadingRoad;

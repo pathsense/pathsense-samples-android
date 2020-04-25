@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">pathsense-invehiclelocationdemo-app</string>
+
+    <string name="NotificationFactory_foreground_tickerText">Pathsense In-Vehicle Location Demo is running</string>
+    <string name="NotificationFactory_foreground_contentTitle">Pathsense In-Vehicle Location Demo</string>
+    <string name="NotificationFactory_foreground_contentText">Pathsense In-Vehicle Location Demo is running</string>
 </resources>

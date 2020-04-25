@@ -6,6 +6,7 @@ package com.pathsense.activitydemo.app;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -137,6 +138,11 @@ public class MainActivity extends Activity {
     // Messages
     static final int MESSAGE_ON_ACTIVITY_CHANGE = 1;
     static final int MESSAGE_ON_ACTIVITY_UPDATE = 2;
+
+    public static Intent createIntent(Context context) {
+        return Intent.makeRestartActivityTask(new ComponentName(context, MainActivity.class));
+    }
+
     //
     InternalActivityChangeReceiver mActivityChangeReceiver;
     InternalActivityUpdateReceiver mActivityUpdateReceiver;

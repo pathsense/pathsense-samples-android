@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">pathsense-activitydemo-app</string>
+
+    <string name="NotificationFactory_foreground_tickerText">Activity Monitoring On</string>
+    <string name="NotificationFactory_foreground_contentTitle">Pathsense Activity Demo</string>
+    <string name="NotificationFactory_foreground_contentText">Activity Monitoring On</string>
 </resources>

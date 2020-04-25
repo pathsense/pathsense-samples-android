@@ -6,6 +6,7 @@ package com.pathsense.geofencedemo.app;
 
 import android.Manifest;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -122,13 +123,18 @@ public class MapActivity extends FragmentActivity implements LocationListener, O
         }
     }
 
-    //
     static final String TAG = MapActivity.class.getName();
+
     // Request Codes
     static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
+
     // Messages
     static final int MESSAGE_ON_GEOFENCE_EVENT = 1;
-    //
+
+    public static Intent createIntent(Context context) {
+        return Intent.makeRestartActivityTask(new ComponentName(context, MapActivity.class));
+    }
+
     int mFindLocation;
     Button mButtonStart;
     Circle mGeofence;

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">pathsense-geofencedemo-app</string>
+
+    <string name="NotificationFactory_foreground_tickerText">Geofence Monitoring On</string>
+    <string name="NotificationFactory_foreground_contentTitle">Pathsense Geofence Demo</string>
+    <string name="NotificationFactory_foreground_contentText">Geofence Monitoring On</string>
 </resources>
