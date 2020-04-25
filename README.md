@@ -69,24 +69,27 @@ By default, it will show the PathSense icon and read <i>"Pathsense is running"</
 <br />
 Setup includes the following:
 
-<ol>
-	<li>Implement <code>com.pathsense.android.sdk.location.PathsenseNotificationFactory</code> and override the desired functionality. See <a href="http://docs.pathsense.io/android/sdk/location/4.1.0.0/com/pathsense/android/sdk/location/PathsenseNotificationFactory.html">javadoc</a>
-		<ul>
-			<li><code>createForegroundNotification</code>: Returns the foreground notification used by PathsenseLocationProviderAPI.</li>
-			<li><code>createForegroundNotificationId</code>: Returns the ID used for foreground notification.
-			<br /><br /><b style="margin-left: -30px">** Note: Returning the same notification and ID used by all other app foreground services allows the foreground notification to be shared and results in a single foreground notification. See <a href="https://developer.android.com/reference/android/app/NotificationManager#notify(int,%20android.app.Notification)">android javadoc</a></b>
-			</li>
-		</ul>
-	</li>
-	<li>Add <b>pathsense.properties</b> under the <b>&lt;module-dir&gt;/src/main/assets</b> folder of your app. Add the <b>/assets</b> folder if not already there.</li>
-	<li>Set the following property <code>notification_factory_class</code> to the fully qualified class name.
-		<br /><br />In <b>&lt;module-dir&gt;/src/main/assets/pathsense.properties</b>:
-<pre>notification_factory_class=com.myapp.MyPathsenseNotificationFactory</pre>
-	</li>
-	<li>Update your proguard rules to prevent obfuscation of the notification factory class.
-		<br /><br />In <b>&lt;module-dir&gt;/proguard-rules.pro</b>:
-<pre>-keep class com.myapp.MyPathsenseNotificationFactory {
-	*;
-}</pre>
-	</li> 
-</ol>
+1. Implement <code>com.pathsense.android.sdk.location.PathsenseNotificationFactory</code> and override the desired functionality. See [javadoc](http://docs.pathsense.io/android/sdk/location/4.1.0.0/com/pathsense/android/sdk/location/PathsenseNotificationFactory.html)
+
+	<code>createForegroundNotification</code>: Returns the foreground notification used by PathsenseLocationProviderAPI.
+
+	<code>createForegroundNotificationId</code>: Returns the ID used for foreground notification.
+
+	<b>** Note: Returning the same notification and ID used by all other app foreground services allows the foreground notification to be shared and results in a single foreground notification. See [android javadoc](https://developer.android.com/reference/android/app/NotificationManager#notify(int,%20android.app.Notification))</b>
+
+2. Add <b>pathsense.properties</b> under the <b>&lt;module-dir&gt;/src/main/assets</b> folder of your app. Add the <b>/assets</b> folder if not already there.
+
+3. Set the following property <code>notification_factory_class</code> to the fully qualified class name.
+
+	In <b>&lt;module-dir&gt;/src/main/assets/pathsense.properties</b>:
+	```
+	notification_factory_class=com.myapp.MyPathsenseNotificationFactory
+	```
+4. Update your proguard rules to prevent obfuscation of the notification factory class.
+
+	In <b>&lt;module-dir&gt;/proguard-rules.pro</b>:
+	```
+	-keep class com.myapp.MyPathsenseNotificationFactory {
+		*;
+	}
+	```
