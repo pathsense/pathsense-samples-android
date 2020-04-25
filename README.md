@@ -1,7 +1,8 @@
+
 Pathsense Samples for Android
 =============================
 
-A collection of sample applications demonstrating how to use the Pathsense SDK. For more information, take a look at the [Javadocs](http://docs.pathsense.io/android/sdk/location/4.0.0.2/) or connect with us on our [website](https://pathsense.com/) or [developer portal](https://developer.pathsense.com/).
+A collection of sample applications demonstrating how to use the Pathsense SDK. For more information, take a look at the [Javadocs](http://docs.pathsense.io/android/sdk/location/4.1.0.0/) or connect with us on our [website](https://pathsense.com/) or [developer portal](https://developer.pathsense.com/).
 
 You can see the additional information for each sample in their respective README files.
 
@@ -31,7 +32,7 @@ Setup for Pathsense Android SDK
 
 3. Save AndroidManifest.xml.
 
-4. Place **pathsense-android-sdk-location-bundle-release-4.0.0.2.aar** under **/libs**
+4. Place **pathsense-android-sdk-location-bundle-release-4.1.0.0.aar** under **/libs**
 
 5. In **build.gradle**, add the following:
 
@@ -48,7 +49,7 @@ Setup for Pathsense Android SDK
     * to the **dependencies** element:
 
     ```groovy
-    compile(name:'pathsense-android-sdk-location-bundle-release-4.0.0.2', ext:'aar')
+    compile(name:'pathsense-android-sdk-location-bundle-release-4.1.0.0', ext:'aar')
     ```
     * for improved performance on Android Oreo and above add Google Play Services Location 15.0.1 or higher ***not required**
     ```groovy
@@ -59,10 +60,33 @@ Setup for Pathsense Android SDK
 
 7. Re-build application.
 
-How to customize notification (Android 7.1+)
+How to customize foreground notification
 ===================================
-The PathSense SDK runs as a foreground service. By default, it will show the PathSense icon and read "Pathsense is running". You can customize this notification, by adding pathsense.properties to the /assets folder of your app and setting the following properties:
- - icon_name: resource name of icon (i.e. drawable/icon)
- - ticker_text
- - content_title
- - content_text
+
+The PathSense SDK runs as a foreground service and will post a foreground notification while in use.
+<br />
+By default, it will show the PathSense icon and read <i>"Pathsense is running"</i>. You can fully customize this notification by implementing <code>com.pathsense.android.sdk.location.PathsenseNotificationFactory</code> and providing your own foreground notification.
+<br />
+Setup includes the following:
+
+<ol>
+	<li>Implement <code>com.pathsense.android.sdk.location.PathsenseNotificationFactory</code> and override the desired functionality. See <a href="http://docs.pathsense.io/android/sdk/location/4.1.0.0/com/pathsense/android/sdk/location/PathsenseNotificationFactory.html">javadoc</a>
+		<ul>
+			<li><code>createForegroundNotification</code>: Returns the foreground notification used by PathsenseLocationProviderAPI.</li>
+			<li><code>createForegroundNotificationId</code>: Returns the ID used for foreground notification.
+			<br /><br /><b style="margin-left: -30px">** Note: Returning the same notification and ID used by all other app foreground services allows the foreground notification to be shared and results in a single foreground notification. See <a href="https://developer.android.com/reference/android/app/NotificationManager#notify(int,%20android.app.Notification)">android javadoc</a></b>
+			</li>
+		</ul>
+	</li>
+	<li>Add <b>pathsense.properties</b> under the <b>&lt;module-dir&gt;/src/main/assets</b> folder of your app. Add the <b>/assets</b> folder if not already there.</li>
+	<li>Set the following property <code>notification_factory_class</code> to the fully qualified class name.
+		<br /><br />In <b>&lt;module-dir&gt;/src/main/assets/pathsense.properties</b>:
+<pre>notification_factory_class=com.myapp.MyPathsenseNotificationFactory</pre>
+	</li>
+	<li>Update your proguard rules to prevent obfuscation of the notification factory class.
+		<br /><br />In <b>&lt;module-dir&gt;/proguard-rules.pro</b>:
+<pre>-keep class com.myapp.MyPathsenseNotificationFactory {
+	*;
+}</pre>
+	</li> 
+</ol>
