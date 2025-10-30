@@ -2,7 +2,7 @@
 Pathsense Samples for Android
 =============================
 
-A collection of sample applications demonstrating how to use the Pathsense SDK. For more information, take a look at the [Javadocs](http://docs.pathsense.io/android/sdk/location/4.1.0.0/) or connect with us on our [website](https://pathsense.com/) or [developer portal](https://developer.pathsense.com/).
+A collection of sample applications demonstrating how to use the Pathsense SDK. For more information, take a look at the [Javadocs](http://docs.pathsense.io/android/sdk/location/4.1.0.0/) or connect with us on our [website](https://pathsense.com/).
 
 You can see the additional information for each sample in their respective README files.
 
@@ -12,7 +12,7 @@ You can see the additional information for each sample in their respective READM
 
 Setup for Pathsense Android SDK
 ===================================
-1. Obtain a **Pathsense SDK Client ID** and **API Key** from [here](https://pathsense.com/). Click “GET STARTED” and enter your email address.
+1. Obtain a **Pathsense SDK Client ID** and **API Key** from [here](https://pathsense.com/). Click “GET THE SDK” and enter your email address.
 
 2. In **AndroidManifest.xml**, add the following elements as children of the &#060;application&#062; element, by inserting them just before the closing &#060;/application&#062; tag:
 
@@ -32,7 +32,7 @@ Setup for Pathsense Android SDK
 
 3. Save AndroidManifest.xml.
 
-4. Place **pathsense-android-sdk-location-bundle-release-4.1.0.0.aar** under **/libs**
+4. Place **pathsense-android-sdk-location-bundle-release-5.0.0.0.aar** under **/libs**
 
 5. In **build.gradle**, add the following:
 
@@ -49,11 +49,7 @@ Setup for Pathsense Android SDK
     * to the **dependencies** element:
 
     ```groovy
-    compile(name:'pathsense-android-sdk-location-bundle-release-4.1.0.0', ext:'aar')
-    ```
-    * for improved performance on Android Oreo and above add Google Play Services Location 15.0.1 or higher ***not required**
-    ```groovy
-    compile "com.google.android.gms:play-services-location:15.0.1"
+    compile(name:'pathsense-android-sdk-location-bundle-release-5.0.0.0', ext:'aar')
     ```
 
 6. Save build.gradle.
