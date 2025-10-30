@@ -1,21 +1,23 @@
 apply plugin: 'com.android.application'
 
+// PathSense SDK v5.0.0.0 is provided privately to licensees.
+// Place pathsense-android-5.0.0.0.aar into this module's libs/ folder.
 repositories {
-    flatDir {
-        dirs 'libs'
-    }
+    flatDir { dirs 'libs' }
 }
 
 android {
-    compileSdkVersion 28
+    // Updated for PathSense SDK 5.0.0.0 — Android 16 (API 36)
+    compileSdkVersion 36
 
     defaultConfig {
         applicationId "com.pathsense.invehiclelocationdemo.app"
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdkVersion 23
+        targetSdkVersion 36
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -25,8 +27,11 @@ android {
 }
 
 dependencies {
-    implementation(name:'pathsense-android-sdk-location-bundle-release-4.1.0.0', ext:'aar')
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation "com.google.android.gms:play-services-maps:15.0.1"
-    implementation "com.google.android.gms:play-services-location:15.0.1"
+    // Obtain the AAR privately from PathSense
+    implementation(name:'pathsense-android-5.0.0.0', ext:'aar')
+
+    // Modern AndroidX and Play Services libraries
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation "com.google.android.gms:play-services-maps:19.0.0"
+    implementation "com.google.android.gms:play-services-location:21.3.0"
 }
